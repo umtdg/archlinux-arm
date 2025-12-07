@@ -105,7 +105,7 @@ function create_flash_img() {
         echo "retrage/edk2-nightly $efi_img_file is required since as of writing this script, images in edk2-aarch64 doesn't work"
         run wget -q --show-progress "https://github.com/retrage/edk2-nightly/blob/master/bin/$efi_img_file"
     fi
-    run dd if=RELEASEAARCH64_QEMU_EFI.fd of=firmware.img conv=notrunc
+    run dd if="$efi_img_file" of=firmware.img conv=notrunc
 }
 
 function modify_fstab() {
