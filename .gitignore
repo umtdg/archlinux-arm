@@ -1,0 +1,11 @@
+# VM itself
+arch-aarch64.qcow2
+
+# Arch Linux ARM
+ArchLinuxARM-aarch64-latest.tar.gz
+rootfs/
+
+# UEFI firmware images
+efivars.img
+firmware.img
+RELEASEAARCH64_QEMU_EFI.fd
