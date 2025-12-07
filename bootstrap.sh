@@ -104,7 +104,7 @@ function create_flash_img() {
     if [ ! -f "$efi_img_file" ]; then
         echo "retrage/edk2-nightly $efi_img_file is required since as of writing this script, images in edk2-aarch64 doesn't work"
         run wget -q --show-progress \
-            "https://github.com/retrage/edk2-nightly/raw/refs/heads/master/bin/$efi_img_file"
+            "https://github.com/retrage/edk2-nightly/raw/b5e504a31ea2469306a20876e19bbb058afeacb5/bin/$efi_img_file"
     fi
     run dd if="$efi_img_file" of=firmware.img conv=notrunc
 }
