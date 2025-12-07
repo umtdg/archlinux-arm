@@ -16,7 +16,7 @@ boot_dir="$root_dir/boot"
 archlinux_arm_archive='ArchLinuxARM-aarch64-latest.tar.gz'
 efi_img_file='RELEASEAARCH64_QEMU_EFI.fd'
 
-assume_all_yes='true'
+assume_all_yes='false'
 if [ "$assume_all_yes" = 'true' ]; then
     set -x
 fi
@@ -103,7 +103,8 @@ function create_flash_img() {
 
     if [ ! -f "$efi_img_file" ]; then
         echo "retrage/edk2-nightly $efi_img_file is required since as of writing this script, images in edk2-aarch64 doesn't work"
-        run wget -q --show-progress "https://github.com/retrage/edk2-nightly/blob/master/bin/$efi_img_file"
+        run wget -q --show-progress \
+            "https://github.com/retrage/edk2-nightly/raw/refs/heads/master/bin/$efi_img_file"
     fi
     run dd if="$efi_img_file" of=firmware.img conv=notrunc
 }
