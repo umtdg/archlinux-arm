@@ -22,16 +22,18 @@ if [ "$assume_all_yes" = 'true' ]; then
 fi
 
 function run() {
-    printf '%s ' "run '$@' (y|s|n)?" > /dev/tty
-    local answer='y'
     if [ "$assume_all_yes" = 'false' ]; then
+        printf '%s ' "run '$@' (y|s|n)?" > /dev/tty
         IFS= read -r answer < /dev/tty
+
+        case $answer in
+            [yY]*) "$@" ;; # run
+            [sS]*) true ;; # do not run but continue
+            *) false ;; # do not run and terminate
+        esac
+    else
+        "$@"
     fi
-    case $answer in
-        [yY]*) "$@" ;; # run
-        [sS]*) true ;; # do not run but continue
-        *) false ;; # do not run and terminate
-    esac
 
     echo
 }
