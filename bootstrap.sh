@@ -128,7 +128,7 @@ function create_startup_nsh() {
     run cat "$boot_dir/startup.nsh"
 }
 
-run sudo pacman -S --needed qemu-full parted wget
+run sudo pacman -S --needed qemu-full parted wget dosfstools
 
 run create_vm_img
 
